@@ -12,14 +12,16 @@ public class ReservationRepository {
 
     private Map<String, Reservation> storage = new HashMap<>();
     private ReservationValidator reservationValidator;
+    private FilmRepository filmRepository;
 
     /**
      * Instantiates a repository for reservations.
      * @param reservationValidator is the validator used.
      */
 
-    public ReservationRepository(ReservationValidator reservationValidator) {
+    public ReservationRepository(ReservationValidator reservationValidator, FilmRepository filmRepository) {
         this.reservationValidator = reservationValidator;
+        this.filmRepository = filmRepository;
     }
 
     /**
@@ -38,7 +40,7 @@ public class ReservationRepository {
     public void insert(Reservation reservation) {
         if (storage.containsKey(reservation.getId()))
             throw new RuntimeException(String.format("A reservation with the ID %s already exists!", reservation.getId()));
-        reservationValidator.validate(reservation);
+        reservationValidator.validate(reservation, filmRepository);
         storage.put(reservation.getId(), reservation);
     }
 
@@ -50,7 +52,7 @@ public class ReservationRepository {
     public void update(Reservation reservation) {
         if (!storage.containsKey(reservation.getId()))
             throw new RuntimeException(String.format("There is no reservation with the ID %s!", reservation.getId()));
-        reservationValidator.validate(reservation);
+        reservationValidator.validate(reservation, filmRepository);
         storage.put(reservation.getId(), reservation);
     }
 

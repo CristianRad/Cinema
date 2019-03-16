@@ -67,4 +67,6 @@ public class ClientService {
         return clientRepository.getAll();
     }
 
+    public ClientRepository getClientRepository() { return clientRepository; }
+
 }

@@ -11,7 +11,11 @@ public class ReservationValidator {
 
     private FilmRepository filmRepository;
 
-    public void validate(Reservation reservation) {
+    public ReservationValidator(FilmRepository filmRepository) {
+        this.filmRepository = filmRepository;
+    }
+
+    public void validate(Reservation reservation, FilmRepository filmRepository) {
         String idFilm = reservation.getIdFilm();
         if (idFilm.length() == 0 || Character.compare(idFilm.charAt(0), '\n') == 0)
             throw new RuntimeException("The film ID must not be null!");

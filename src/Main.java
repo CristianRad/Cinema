@@ -13,14 +13,17 @@ public class Main {
 
     public static void main(String[] args) {
         FilmValidator filmValidator = new FilmValidator();
-        ClientValidator clientValidator = new ClientValidator();
-        ReservationValidator reservationValidator = new ReservationValidator();
         FilmRepository filmRepository = new FilmRepository(filmValidator);
-        ClientRepository clientRepository = new ClientRepository(clientValidator);
-        ReservationRepository reservationRepository = new ReservationRepository(reservationValidator);
         FilmService filmService = new FilmService(filmRepository);
+
+        ClientValidator clientValidator = new ClientValidator();
+        ClientRepository clientRepository = new ClientRepository(clientValidator);
         ClientService clientService = new ClientService(clientRepository);
-        ReservationService reservationService = new ReservationService(reservationRepository);
+
+        ReservationValidator reservationValidator = new ReservationValidator(filmRepository);
+        ReservationRepository reservationRepository = new ReservationRepository(reservationValidator, filmRepository);
+        ReservationService reservationService = new ReservationService(reservationRepository, clientRepository, filmRepository);
+
         Console console = new Console(filmService, clientService, reservationService);
 
         console.run();

@@ -75,4 +75,6 @@ public class ClientRepository {
         return new ArrayList<>(storage.values());
     }
 
+    public Map<String, Client> getClientStorage() { return storage; }
+
 }

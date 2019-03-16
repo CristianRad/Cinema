@@ -12,7 +12,8 @@ public class ClientValidator {
             throw new RuntimeException("The CNP must have exactly 13 digits!");
         String birthday = client.getBirthday();
         if ((birthday.charAt(0) < '0' || birthday.charAt(0) > '3') ||
-                (birthday.charAt(1) < '0' || birthday.charAt(1) > '9') ||
+                (birthday.charAt(0) == '3' && (birthday.charAt(1) < '0' || birthday.charAt(1) > '1')) ||
+                ((birthday.charAt(0) > '0' && birthday.charAt(0) < '3') && (birthday.charAt(1) < '0' || birthday.charAt(1) > '9')) ||
                 (birthday.charAt(2) != '.') ||
                 (birthday.charAt(3) == '0' && (birthday.charAt(4) < '0' || birthday.charAt(4) > '9')) ||
                 (birthday.charAt(3) == '1' && (birthday.charAt(4) < '0' || birthday.charAt(4) > '2')) ||
@@ -25,7 +26,8 @@ public class ClientValidator {
             throw new RuntimeException("The date of birth is not valid!");
         String regDay = client.getRegistrationDay();
         if ((regDay.charAt(0) < '0' || regDay.charAt(0) > '3') ||
-                (regDay.charAt(1) < '0' || regDay.charAt(1) > '9') ||
+                (regDay.charAt(0) == '3' && (regDay.charAt(1) < '0' || regDay.charAt(1) > '1')) ||
+                ((regDay.charAt(0) > '0' && regDay.charAt(0) < '3') && (regDay.charAt(1) < '0' || regDay.charAt(1) > '9')) ||
                 (regDay.charAt(2) != '.') ||
                 (regDay.charAt(3) == '0' && (regDay.charAt(4) < '0' || regDay.charAt(4) > '9')) ||
                 (regDay.charAt(3) == '1' && (regDay.charAt(4) < '0' || regDay.charAt(4) > '2')) ||

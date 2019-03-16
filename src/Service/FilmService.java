@@ -63,4 +63,6 @@ public class FilmService {
         return filmRepository.getAll();
     }
 
+    public FilmRepository getFilmRepository() { return filmRepository; }
+
 }

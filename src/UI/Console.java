@@ -287,6 +287,8 @@ public class Console {
             String time = scanner.nextLine();
 
             reservationService.addReservation(id, idFilm, idCardClient, date, time);
+            if (clientService.getClientRepository().getClientStorage().containsKey(idCardClient))
+                System.out.println("Bonus points: " + clientService.getClientRepository().getClientStorage().get(idCardClient).getPoints());
             System.out.println("Reservation added successfully!");
         } catch (RuntimeException rex) {
             System.out.println("Errors: " + rex.getMessage());

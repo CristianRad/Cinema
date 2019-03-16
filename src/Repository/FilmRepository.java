@@ -75,4 +75,6 @@ public class FilmRepository {
         return new ArrayList<>(storage.values());
     }
 
+    public Map<String, Film> getFilmStorage() { return storage; }
+
 }
