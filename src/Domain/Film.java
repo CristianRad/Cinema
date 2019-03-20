@@ -59,9 +59,7 @@ public class Film {
         this.ticketPrice = ticketPrice;
     }
 
-    public boolean isOnScreen() {
-        return onScreen;
-    }
+    public boolean isOnScreen() { return onScreen; }
 
     public void setOnScreen(boolean onScreen) {
         this.onScreen = onScreen;

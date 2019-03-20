@@ -8,6 +8,7 @@ import Service.ClientService;
 import Service.FilmService;
 import Service.ReservationService;
 import UI.Console;
+import UI.NaturalLanguageConsole;
 
 public class Main {
 
@@ -24,9 +25,11 @@ public class Main {
         ReservationRepository reservationRepository = new ReservationRepository(reservationValidator, filmRepository);
         ReservationService reservationService = new ReservationService(reservationRepository, clientRepository, filmRepository);
 
-        Console console = new Console(filmService, clientService, reservationService);
+        //Console console = new Console(filmService, clientService, reservationService);
+        NaturalLanguageConsole naturalLanguageConsole = new NaturalLanguageConsole(filmService, clientService, reservationService);
 
-        console.run();
+        //console.run();
+        naturalLanguageConsole.run();
     }
 
 }
